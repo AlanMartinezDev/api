@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    echo "API";
+Route::get('/clientes', function () {
+    $response = Http::get('http://127.0.0.1:8002/api/clients');
+    $data = $response->json();
+    return view('clientes', ['datos' => $data]);
 });
+
